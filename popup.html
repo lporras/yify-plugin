@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Getting Started Extension's Popup</title>
+    <link rel="stylesheet" type="text/css" href="css/popup.css">
+  <!--
+    - JavaScript and HTML must be in separate files: see our Content Security
+    - Policy documentation[1] for details and explanation.
+    -
+    - [1]: http://developer.chrome.com/extensions/contentSecurityPolicy.html
+   -->
+  </head>
+  <body>
+    <section id="yifypluginapp">
+      <header id="header"></header>
+      <section id="main"></section>
+      <footer id="footer"></footer>
+    </section>
+
+    <!-- external libs -->
+    <script type="text/javascript" src="js/json2/json2.js"></script>
+    <script type="text/javascript" src="js/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="js/handlebars/handlebars.runtime-1.0.rc.1.min.js"></script>
+    <script type="text/javascript" src="js/templates/templates.js"></script>
+    <script type="text/javascript" src="js/zepto/zepto.min.js"></script>
+    <script type="text/javascript" src="js/deferred/deferred.js"></script>
+    <script type="text/javascript" src="js/backbone/backbone-min.js"></script>
+    <script type="text/javascript" src="js/marionette/backbone.marionette.js"></script>
+
+    <!-- app scripts -->
+    <script type="text/javascript" src="js/app/YifyPlugin.js"></script>
+    <script type="text/javascript" src="js/app/YifyPlugin.Movies.js"></script>
+    <script type="text/javascript" src="js/app/YifyPlugin.MovieList.Views.js"></script>
+    <script type="text/javascript" src="js/app/YifyPlugin.MovieList.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>
+
