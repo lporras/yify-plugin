@@ -10,7 +10,7 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   if (stack1 = helpers.MovieUrl) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.MovieUrl; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\" target: \"_blank\"><img src=\"";
+    + "\" target=\"_blank\"><img src=\"";
   if (stack1 = helpers.CoverImage) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.CoverImage; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -18,7 +18,7 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   if (stack1 = helpers.MovieUrl) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.MovieUrl; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\" target: \"_blank\">";
+    + "\" target=\"_blank\">";
   if (stack1 = helpers.MovieTitle) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.MovieTitle; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -50,11 +50,11 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   if (stack1 = helpers.MovieUrl) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.MovieUrl; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\" class=\"std-btn-small mright\"><span>View Info</span></a>\n      <a href=\"";
+    + "\" class=\"std-btn-small mright\" target=\"_blank\"><span>View Info</span></a>\n      <a href=\"";
   if (stack1 = helpers.TorrentUrl) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.TorrentUrl; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\" class=\"std-btn-small mleft torrentDwl\" data-movieid=\"";
+    + "\" target=\"_blank\" class=\"std-btn-small mleft torrentDwl\" data-movieid=\"";
   if (stack1 = helpers.MovieID) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.MovieID; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)

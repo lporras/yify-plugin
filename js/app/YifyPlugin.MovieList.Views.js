@@ -23,7 +23,7 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
     },
 
     downloadTorrent: function(){
-      chrome.downloads.download({url: this.model.get("TorrentUrl")});
+      console.log("download Torrent: "+ this.model.get("TorrentUrl"));
     }
   });
 

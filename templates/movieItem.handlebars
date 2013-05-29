@@ -1,10 +1,10 @@
 <div class="browse-content">
   <div class="browse-img">
-    <a href="{{MovieUrl}}" target: "_blank"><img src="{{CoverImage}}" alt="" /></a>
+    <a href="{{MovieUrl}}" target="_blank"><img src="{{CoverImage}}" alt="" /></a>
   </div>
   <div class="browse-info">
     <span class="info">
-      <h3><a href="{{MovieUrl}}" target: "_blank">{{MovieTitle}}</a></h3>
+      <h3><a href="{{MovieUrl}}" target="_blank">{{MovieTitle}}</a></h3>
       <p><b>Size:</b> {{size}}</p>
       <p><b>Quality:</b> {{Quality}}</p>
       <p><b>Genre:</b> {{Genre}}</p>
@@ -15,8 +15,8 @@
       </span>
     </span>
     <span class="links">
-      <a href="{{ MovieUrl }}" class="std-btn-small mright"><span>View Info</span></a>
-      <a href="{{ TorrentUrl }}" class="std-btn-small mleft torrentDwl" data-movieid="{{MovieID}}"><span>Download</span></a>
+      <a href="{{ MovieUrl }}" class="std-btn-small mright" target="_blank"><span>View Info</span></a>
+      <a href="{{ TorrentUrl }}" target="_blank" class="std-btn-small mleft torrentDwl" data-movieid="{{MovieID}}"><span>Download</span></a>
     </span>
   </div>
 </div>
