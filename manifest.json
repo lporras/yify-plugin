@@ -6,6 +6,7 @@
   "version": "1.0",
 
   "permissions": [
+    "tabs",
     "http://yify-torrents.com/api/"
   ],
   "browser_action": {

@@ -22,7 +22,13 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
       return Handlebars.templates.movieItem(serialized_model)
     },
 
-    downloadTorrent: function(){
+    downloadTorrent: function(event){
+      /*event.stopPropagation();
+      event.preventDefault();
+      debugger;
+      chrome.tabs.create({url: this.model.get("TorrentUrl")})
+      return false;
+      */
       console.log("download Torrent: "+ this.model.get("TorrentUrl"));
     }
   });
