@@ -9,13 +9,11 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
   // Display an individual movie item, and respond to changes
   // that are made to the item
   Views.ItemView = Marionette.ItemView.extend({
-    tagName: 'li',
+    tagName: 'div',
+    className: 'browse-wrapper',
     //template: '#template-movieItemView'
     template: function (serialized_model){
-      debugger;
       return Handlebars.templates.movieItem(serialized_model)
-      //JST.movieItem = _.template($("#template-movieItemView").html()).source;
-      //return JST.movieItem;
     }
   });
 
@@ -26,10 +24,17 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
 
   Views.ListView = Backbone.Marionette.CompositeView.extend({
     itemView: Views.ItemView,
-    itemViewContainer: '#movie-list',
+    //itemViewContainer: '#movie-list',
     template: function (serialized_model){
-      debugger;
       return Handlebars.templates.movieList(serialized_model)
+    },
+
+    appendHtml: function(collectionView, itemView, index){
+      var resultOfMod = index % 3;
+      if(resultOfMod == 0){
+        itemView.$el.addClass("no-pagging");
+      }
+      collectionView.$("#movie-list").append(itemView.el);
     }
   });
 
