@@ -11,9 +11,19 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
   Views.ItemView = Marionette.ItemView.extend({
     tagName: 'div',
     className: 'browse-wrapper',
+    events: {
+      "click a.torrentDwl": "downloadTorrent"
+    },
+    initialize: function(){
+      _.bindAll(this, 'downloadTorrent')
+    },
     //template: '#template-movieItemView'
     template: function (serialized_model){
       return Handlebars.templates.movieItem(serialized_model)
+    },
+
+    downloadTorrent: function(){
+      chrome.downloads.download({url: this.model.get("TorrentUrl")});
     }
   });
 
