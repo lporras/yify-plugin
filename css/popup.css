@@ -1,16 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
 body {
   min-width: 357px;
   overflow-x: hidden;
+
+  font-size: 12px;
+  color: #333333;
+  font-family: Tahoma, Geneva, sans-serif;
+  line-height: 130%;
 }
 
 img {
-  margin: 5px;
-  border: 2px solid black;
-  vertical-align: middle;
   width: 120px;
   height: 192px;
 }
 
 .view label{
   display: block;
+}
+
+#main{
+  background: #f9f9f9;
+  padding: 5px;
+  position: relative;
+}
+
+#main .browse{
+  margin-left: 20px;
+  float: left;
 }
