@@ -30,28 +30,6 @@ YifyPlugin.module('Movies', function(Movies, App, Backbone, Marionette, $, _) {
       this.MovieCount = response.MovieCount;
       return response.MovieList;
     }
-
-    //localStorage: new Backbone.LocalStorage(localStorageKey),
-
-    /*
-
-    getCompleted: function() {
-      return this.filter(this._isCompleted);
-    },
-
-    getActive: function() {
-      return this.reject(this._isCompleted);
-    },
-
-    comparator: function(todo) {
-      return todo.get('created');
-    },
-
-    _isCompleted: function(todo){
-      return todo.isCompleted();
-    }
-    */
-
   });
 
   Movies.addInitializer(function() {

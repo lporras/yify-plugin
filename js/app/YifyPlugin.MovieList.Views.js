@@ -12,10 +12,11 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
     tagName: 'div',
     className: 'browse-wrapper',
     events: {
-      "click a.torrentDwl": "downloadTorrent"
+      "click a.streamTorrent": "streamTorrent",
+      "click a.downloadTorrent": "downloadTorrent"
     },
     initialize: function(){
-      _.bindAll(this, 'downloadTorrent')
+      _.bindAll(this, 'streamTorrent')
     },
     //template: '#template-movieItemView'
     template: function (serialized_model){
@@ -30,6 +31,12 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
       return false;
       */
       console.log("download Torrent: "+ this.model.get("TorrentUrl"));
+    },
+
+    streamTorrent: function(event){
+      var thisView = this;
+      chrome.tabs.create({url: 'chrome-extension://' + chrome.i18n.getMessage("@@extension_id") + '/movie.html#' + this.model.id});
+      return false;
     }
   });
 
