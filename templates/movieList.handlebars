@@ -2,90 +2,76 @@
   <form class="form-horizontal">
 
     <div class="control-group">
-      <label class="control-label" for="keywords">Movie Name:</label>
-      <div class="controls">
-        <input type="text" name="Keywords" id="keywords" value="" class="input-large" maxlength="300" tabindex="1" autocomplete="off" placeholder="Type Movie Name"><br>
-      </div>
+      <label class="checkbox inline" for="keywords">Movie Name:</label>
+      <input type="text" name="Keywords" id="keywords" value="" class="input-xxlarge" maxlength="300" tabindex="1" autocomplete="off" placeholder="Type Movie Name">
+      <button type="submit" class="btn btn-primary">Search</button>
     </div>
 
     <div class="control-group">
-      <label class="control-label">Quality:</label>
-      <div class="controls">
-        <select name="Quality" id="form_Quality" class="span1">
-          <option value="All" style="text-indent: 0px;" selected="selected">All</option>
-          <option value="1080p" style="text-indent: 0px;">1080p</option>
-          <option value="3D" style="text-indent: 0px;">3D</option>
-          <option value="480p" style="text-indent: 0px;">480p</option>
-          <option value="720p" style="text-indent: 0px;">720p</option>
-          <option value="DVD" style="text-indent: 0px;">DVD</option>
-          <option value="HDRip" style="text-indent: 0px;">HDRip</option>
-        </select>
-      </div>
+      <label class="checkbox inline">Quality:</label>
+      <select name="Quality" id="form_Quality" class="span1">
+        <option value="All" style="text-indent: 0px;" selected="selected">All</option>
+        <option value="1080p" style="text-indent: 0px;">1080p</option>
+        <option value="3D" style="text-indent: 0px;">3D</option>
+        <option value="480p" style="text-indent: 0px;">480p</option>
+        <option value="720p" style="text-indent: 0px;">720p</option>
+        <option value="DVD" style="text-indent: 0px;">DVD</option>
+        <option value="HDRip" style="text-indent: 0px;">HDRip</option>
+      </select>
 
-      <label class="control-label">Genre:</label>
-      <div class="controls">
-        <select name="Genre" id="form_Genre" class="span1">
-          <option value="All" style="text-indent: 0px;" selected="selected">All</option>
-          <option value="Action" style="text-indent: 0px;">Action</option>
-          <option value="Adventure" style="text-indent: 0px;">Adventure</option>
-          <option value="Animation" style="text-indent: 0px;">Animation</option>
-          <option value="Biography" style="text-indent: 0px;">Biography</option>
-          <option value="Comedy" style="text-indent: 0px;">Comedy</option>
-          <option value="Crime" style="text-indent: 0px;">Crime</option>
-          <option value="Documentary" style="text-indent: 0px;">Documentary</option>
-          <option value="Drama" style="text-indent: 0px;">Drama</option>
-          <option value="Family" style="text-indent: 0px;">Family</option>
-          <option value="Fantasy" style="text-indent: 0px;">Fantasy</option>
-          <option value="Film-Noir" style="text-indent: 0px;">Film-Noir</option>
-          <option value="History" style="text-indent: 0px;">History</option>
-          <option value="Horror" style="text-indent: 0px;">Horror</option>
-          <option value="Music" style="text-indent: 0px;">Music</option>
-          <option value="Musical" style="text-indent: 0px;">Musical</option>
-          <option value="Mystery" style="text-indent: 0px;">Mystery</option>
-          <option value="Romance" style="text-indent: 0px;">Romance</option>
-          <option value="Sci-Fi" style="text-indent: 0px;">Sci-Fi</option>
-          <option value="Short" style="text-indent: 0px;">Short</option>
-          <option value="Sport" style="text-indent: 0px;">Sport</option>
-          <option value="Thriller" style="text-indent: 0px;">Thriller</option>
-          <option value="War" style="text-indent: 0px;">War</option>
-          <option value="Western" style="text-indent: 0px;">Western</option>
-        </select>
-      </div>
+      <label class="checkbox inline">Genre:</label>
+      <select name="Genre" id="form_Genre" class="span1">
+        <option value="All" style="text-indent: 0px;" selected="selected">All</option>
+        <option value="Action" style="text-indent: 0px;">Action</option>
+        <option value="Adventure" style="text-indent: 0px;">Adventure</option>
+        <option value="Animation" style="text-indent: 0px;">Animation</option>
+        <option value="Biography" style="text-indent: 0px;">Biography</option>
+        <option value="Comedy" style="text-indent: 0px;">Comedy</option>
+        <option value="Crime" style="text-indent: 0px;">Crime</option>
+        <option value="Documentary" style="text-indent: 0px;">Documentary</option>
+        <option value="Drama" style="text-indent: 0px;">Drama</option>
+        <option value="Family" style="text-indent: 0px;">Family</option>
+        <option value="Fantasy" style="text-indent: 0px;">Fantasy</option>
+        <option value="Film-Noir" style="text-indent: 0px;">Film-Noir</option>
+        <option value="History" style="text-indent: 0px;">History</option>
+        <option value="Horror" style="text-indent: 0px;">Horror</option>
+        <option value="Music" style="text-indent: 0px;">Music</option>
+        <option value="Musical" style="text-indent: 0px;">Musical</option>
+        <option value="Mystery" style="text-indent: 0px;">Mystery</option>
+        <option value="Romance" style="text-indent: 0px;">Romance</option>
+        <option value="Sci-Fi" style="text-indent: 0px;">Sci-Fi</option>
+        <option value="Short" style="text-indent: 0px;">Short</option>
+        <option value="Sport" style="text-indent: 0px;">Sport</option>
+        <option value="Thriller" style="text-indent: 0px;">Thriller</option>
+        <option value="War" style="text-indent: 0px;">War</option>
+        <option value="Western" style="text-indent: 0px;">Western</option>
+      </select>
 
-      <label class="control-label">Rating:</label>
-      <div class="controls">
-        <select name="Rating" id="form_Rating" class="span1">
-          <option value="0" style="text-indent: 0px;" selected="selected">All</option>
-          <option value="9.9" style="text-indent: 0px;">10</option>
-          <option value="9" style="text-indent: 0px;">9+</option>
-          <option value="8" style="text-indent: 0px;">8+</option>
-          <option value="7" style="text-indent: 0px;">7+</option>
-          <option value="6" style="text-indent: 0px;">6+</option>
-          <option value="5" style="text-indent: 0px;">5+</option>
-          <option value="4" style="text-indent: 0px;">4+</option>
-          <option value="3" style="text-indent: 0px;">3+</option>
-          <option value="2" style="text-indent: 0px;">2+</option>
-          <option value="1" style="text-indent: 0px;">1+</option>
-        </select>
-      </div>
+      <label class="checkbox inline">Rating:</label>
+      <select name="Rating" id="form_Rating" class="span1">
+        <option value="0" style="text-indent: 0px;" selected="selected">All</option>
+        <option value="9.9" style="text-indent: 0px;">10</option>
+        <option value="9" style="text-indent: 0px;">9+</option>
+        <option value="8" style="text-indent: 0px;">8+</option>
+        <option value="7" style="text-indent: 0px;">7+</option>
+        <option value="6" style="text-indent: 0px;">6+</option>
+        <option value="5" style="text-indent: 0px;">5+</option>
+        <option value="4" style="text-indent: 0px;">4+</option>
+        <option value="3" style="text-indent: 0px;">3+</option>
+        <option value="2" style="text-indent: 0px;">2+</option>
+        <option value="1" style="text-indent: 0px;">1+</option>
+      </select>
 
-      <label class="control-label">Order By:</label>
-      <div class="controls">
-        <select style="margin-right:0;" name="orderBy" id="form_orderBy" class="span2">
-          <option value="latest" style="text-indent: 0px;" selected="selected">Latest</option>
-          <option value="oldest" style="text-indent: 0px;">Oldest</option>
-          <option value="seeds" style="text-indent: 0px;">Seeds</option>
-          <option value="peers" style="text-indent: 0px;">Peers</option>
-          <option value="size" style="text-indent: 0px;">Size</option>
-          <option value="A-Z" style="text-indent: 0px;">A-Z</option>
-          <option value="rating" style="text-indent: 0px;">Rating</option>
-        </select>
-      </div>
-
-    </div>
-
-    <div class="form-actions">
-      <button type="submit" class="btn btn-primary">Search</button>
+      <label class="checkbox inline">Order By:</label>
+      <select style="margin-right:0;" name="orderBy" id="form_orderBy" class="span1">
+        <option value="latest" style="text-indent: 0px;" selected="selected">Latest</option>
+        <option value="oldest" style="text-indent: 0px;">Oldest</option>
+        <option value="seeds" style="text-indent: 0px;">Seeds</option>
+        <option value="peers" style="text-indent: 0px;">Peers</option>
+        <option value="size" style="text-indent: 0px;">Size</option>
+        <option value="A-Z" style="text-indent: 0px;">A-Z</option>
+        <option value="rating" style="text-indent: 0px;">Rating</option>
+      </select>
     </div>
   </form>
 
