@@ -47,7 +47,7 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
 
   Views.ListView = Backbone.Marionette.CompositeView.extend({
     itemView: Views.ItemView,
-    //itemViewContainer: '#movie-list',
+    itemViewContainer: '#movie-list',
     template: function (serialized_model){
       return Handlebars.templates.movieList(serialized_model)
     },
