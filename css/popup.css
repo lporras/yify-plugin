@@ -14,22 +14,26 @@ body {
   line-height: 130%;
 }
 
-img {
-  width: 120px;
-  height: 192px;
-}
-
-.view label{
-  display: block;
-}
-
 #main{
   background: #f9f9f9;
   padding: 5px;
   position: relative;
 }
 
-#main .browse{
-  margin-left: 20px;
-  float: left;
+#movie-list.media-list{
+  margin-left: 29px;
+}
+
+#movie-list .media{
+  height: 250px;
+}
+
+#movie-list .media .media-body{
+  height: 220px;
+}
+
+#movie-list .span5{
+  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }

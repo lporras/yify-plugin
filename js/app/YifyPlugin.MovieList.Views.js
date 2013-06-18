@@ -10,7 +10,7 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
   // that are made to the item
   Views.ItemView = Marionette.ItemView.extend({
     tagName: 'div',
-    className: 'browse-wrapper',
+    className: 'span5',
     events: {
       "click a.streamTorrent": "streamTorrent",
       "click a.downloadTorrent": "downloadTorrent"
@@ -46,19 +46,20 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
   // Controls the rendering of the list of items
 
   Views.ListView = Backbone.Marionette.CompositeView.extend({
+    className: "row",
     itemView: Views.ItemView,
     itemViewContainer: '#movie-list',
     template: function (serialized_model){
       return Handlebars.templates.movieList(serialized_model)
-    },
+    }
 
-    appendHtml: function(collectionView, itemView, index){
+    /*appendHtml: function(collectionView, itemView, index){
       var resultOfMod = index % 3;
       if(resultOfMod == 0){
         itemView.$el.addClass("no-pagging");
       }
       collectionView.$("#movie-list").append(itemView.el);
-    }
+    }*/
   });
 
 });
