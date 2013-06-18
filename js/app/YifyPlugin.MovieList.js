@@ -24,7 +24,8 @@ YifyPlugin.module('MovieList', function (MovieList, App, Backbone, Marionette, $
     // and fetching the list of todo items, if there are any
     start: function () {
       this.showMovieList(this.movieList);
-      this.movieList.fetch();
+      //this.movieList.fetch();
+      //this.movieList.pager({success: this.updateCount});
     },
 
     showMovieList: function (movieList){
@@ -35,7 +36,6 @@ YifyPlugin.module('MovieList', function (MovieList, App, Backbone, Marionette, $
 
     // Set the filter to show complete or all items
     filterItems: function (filter) {
-      console.log(filter);
       filter = filter || "";
       App.vent.trigger('MovieList:filter', filter.trim() || '');
     }

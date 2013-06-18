@@ -18,7 +18,7 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
     initialize: function(){
       _.bindAll(this, 'streamTorrent')
     },
-    //template: '#template-movieItemView'
+
     template: function (serialized_model){
       return Handlebars.templates.movieItem(serialized_model)
     },
@@ -49,17 +49,29 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
     className: "row",
     itemView: Views.ItemView,
     itemViewContainer: '#movie-list',
+
     template: function (serialized_model){
       return Handlebars.templates.movieList(serialized_model)
+    },
+
+    ui: {
+      moviesCount: "#movies-count .count"
+    },
+
+    initialize: function(options){
+      _.bindAll(this, 'updateCount')
+      this.collection.on('reset', this.updateCount, this)
+      this.collection.pager({success: this.updateCount})
+    },
+
+    updateCount: function(){
+      this.ui.moviesCount.html(this.collection.totalRecords);
+    },
+
+    onRender: function(){
+      this.updateCount();
     }
 
-    /*appendHtml: function(collectionView, itemView, index){
-      var resultOfMod = index % 3;
-      if(resultOfMod == 0){
-        itemView.$el.addClass("no-pagging");
-      }
-      collectionView.$("#movie-list").append(itemView.el);
-    }*/
   });
 
 });

@@ -24,6 +24,10 @@ body {
   margin-left: 29px;
 }
 
+#movies-count{
+  margin-left: 40px;
+}
+
 #movie-list .media{
   height: 250px;
 }
