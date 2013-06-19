@@ -40,7 +40,7 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
     }
   });
 
-  // Item List View
+  // List View
   // --------------
   //
   // Controls the rendering of the list of items
@@ -55,22 +55,43 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
     },
 
     ui: {
-      moviesCount: "#movies-count .count"
+      moviesCount: "#movies-count .count",
+      movieList: "#movie-list"
     },
 
     initialize: function(options){
-      _.bindAll(this, 'updateCount')
-      this.collection.on('reset', this.updateCount, this)
-      this.collection.pager({success: this.updateCount})
+      _.bindAll(this, 'updateCount', 'ajaxSend', 'showLoading', 'ajaxSuccess')
+      //this.collection.on('reset', this.updateCount, this)
+      this.collection.on('ajaxSend', this.showLoading)
+      this.collection.on('ajaxSuccess', this.render);
+
+      $(document).ajaxSend(this.ajaxSend);
+      $(document).ajaxSuccess(this.ajaxSuccess);
     },
 
     updateCount: function(){
       this.ui.moviesCount.html(this.collection.totalRecords);
     },
 
+    ajaxSend: function(event, jqXHR, ajaxOptions){
+      if(/api\/list/.test(ajaxOptions.url)){
+        this.collection.trigger("ajaxSend")
+      }
+    },
+
+    ajaxSuccess: function(event, XMLHttpRequest, ajaxOptions){
+      if(/api\/list/.test(ajaxOptions.url)){
+        this.collection.trigger("ajaxSuccess");
+      }
+    },
+
+    showLoading: function(){
+      this.ui.movieList.html("<p class='loading'><img src='/img/loading.gif'/>Loading...</p>");
+    },
+
     onRender: function(){
       this.updateCount();
-    }
+    },
 
   });
 
