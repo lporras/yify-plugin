@@ -127,7 +127,7 @@ YifyPlugin.module('Movies', function(Movies, App, Backbone, Marionette, $, _) {
       this.quality  = options.quality;
       this.genre    = options.genre;
 
-      if(options.keywords){
+      if(options.hasOwnProperty("keywords")){
         if(options.keywords.length >= 1){
           this.server_api.keywords = options.keywords;
         }else{

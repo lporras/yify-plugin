@@ -97,7 +97,12 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
       this.ui.orderBy = this.$el.find("select#form_orderBy");
       this.ui.genre = this.$el.find("select#form_Genre");
 
-      this.ui.keywords.attr("value", this.collection.server_api.keywords);
+      if(this.collection.server_api.hasOwnProperty("keywords") && this.collection.server_api.keywords.length >= 1){
+        this.ui.keywords.attr("value", this.collection.server_api.keywords);
+      }else{
+        this.ui.keywords.attr("value", "");
+      }
+
 
       var quality = this.collection.quality;
       this.ui.quality.find("option").filter(function() {
@@ -128,7 +133,6 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
     submitForm: function(e){
       e.preventDefault();
       e.stopPropagation();
-      //console.log(this.reformat($(e.target).serializeArray()));
       var formHash = this.reformat($(e.target).serializeArray());
       this.collection.search(formHash);
     }
