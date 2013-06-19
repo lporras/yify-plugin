@@ -50,7 +50,7 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
 
     render: function(){
       this.$el.empty();
-      if(this.collection.length > 0){
+      if(this.collection.totalPages >= 1){
         this.$el.pagination({
           items: this.collection.totalRecords,
           itemsOnPage: this.collection.perPage,
