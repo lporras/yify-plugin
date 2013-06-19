@@ -51,7 +51,7 @@ YifyPlugin.module('Movies', function(Movies, App, Backbone, Marionette, $, _) {
       // service you are using does not support providing the total
       // number of pages for us.
       // 10 as a default in case your service doesn't return the total
-      totalPages: 10,
+      totalPages: 1,
 
       totalRecords: 0
     },
@@ -91,10 +91,6 @@ YifyPlugin.module('Movies', function(Movies, App, Backbone, Marionette, $, _) {
       this.totalPages = Math.floor(this.totalRecords / this.perPage);
       return response.MovieList;
     }
-  });
-
-  Movies.addInitializer(function() {
-    window.moviesList = new Movies.MovieList();
   });
 
 });

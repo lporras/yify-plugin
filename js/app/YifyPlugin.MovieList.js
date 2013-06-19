@@ -5,6 +5,9 @@ YifyPlugin.module('MovieList', function (MovieList, App, Backbone, Marionette, $
   // ---------------
   //
   MovieList.Router = Marionette.AppRouter.extend({
+    appRoutes: {
+      "movies/page/:page": "goToPage"
+    }
   });
 
   // MovieList Controller (Mediator)
@@ -14,6 +17,7 @@ YifyPlugin.module('MovieList', function (MovieList, App, Backbone, Marionette, $
   // level, above the implementation detail of views and models
   MovieList.Controller = function () {
     this.movieList = new App.Movies.MovieList();
+    window.movieList = this.movieList;
   };
 
   _.extend(MovieList.Controller.prototype, {
@@ -21,7 +25,6 @@ YifyPlugin.module('MovieList', function (MovieList, App, Backbone, Marionette, $
     // and fetching the list of todo items, if there are any
     start: function () {
       this.showMovieList(this.movieList);
-
     },
 
     showMovieList: function (movieList){
@@ -29,8 +32,11 @@ YifyPlugin.module('MovieList', function (MovieList, App, Backbone, Marionette, $
         collection: movieList
       });
       App.main.show(movieListView);
-      //movieList.pager({success: function(){ movieList.trigger("ajaxSuccess") } });
       this.movieList.pager();
+    },
+
+    goToPage: function(page){
+      this.movieList.goTo(page);
     }
 
   });

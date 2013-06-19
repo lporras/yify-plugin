@@ -40,6 +40,29 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
     }
   });
 
+  Views.PaginationView = Backbone.View.extend({
+    className: "pagination pagination-centered",
+
+    initialize: function(){
+      this.collection.on("reset", this.render, this);
+      this.render();
+    },
+
+    render: function(){
+      this.$el.empty();
+      this.$el.pagination({
+        items: this.collection.totalRecords,
+        itemsOnPage: this.collection.perPage,
+        currentPage: this.collection.currentPage,
+        displayedPages: 6,
+        edges: 1,
+        hrefTextPrefix: "#/movies/page/"
+      });
+      return this;
+    }
+
+  });
+
   // List View
   // --------------
   //
@@ -56,7 +79,8 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
 
     ui: {
       moviesCount: "#movies-count .count",
-      movieList: "#movie-list"
+      movieList: "#movie-list",
+      pagination: ".movies-pagination"
     },
 
     initialize: function(options){
@@ -87,10 +111,12 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
 
     showLoading: function(){
       this.ui.movieList.html("<p class='loading'><img src='/img/loading.gif'/>Loading...</p>");
+      //this.ui.pagination.empty();
     },
 
     onRender: function(){
       this.updateCount();
+      this.ui.pagination.html(new Views.PaginationView({collection: this.collection}).render().el)
     },
 
   });
