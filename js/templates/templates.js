@@ -103,7 +103,7 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   if (stack1 = helpers.MovieID) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.MovieID; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">\n      Download\n    </a>\n    <a href=\"javascript:;\" class=\"btn btn-primary\">\n      View Online\n    </a>\n  </span>\n</div>\n";
+    + "\">\n      Download\n    </a>\n    <a href=\"javascript:;\" class=\"btn btn-primary streamTorrent\">\n      View Online\n    </a>\n  </span>\n</div>\n";
   return buffer;
   });
 templates['movieList'] = template(function (Handlebars,depth0,helpers,partials,data) {
