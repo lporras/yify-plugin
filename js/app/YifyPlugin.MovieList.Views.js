@@ -50,14 +50,17 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
 
     render: function(){
       this.$el.empty();
-      this.$el.pagination({
-        items: this.collection.totalRecords,
-        itemsOnPage: this.collection.perPage,
-        currentPage: this.collection.currentPage,
-        displayedPages: 6,
-        edges: 1,
-        hrefTextPrefix: "#/movies/page/"
-      });
+      if(this.collection.length > 0){
+        this.$el.pagination({
+          items: this.collection.totalRecords,
+          itemsOnPage: this.collection.perPage,
+          currentPage: this.collection.currentPage,
+          displayedPages: 6,
+          edges: 1,
+          hrefTextPrefix: "#/movies/page/"
+        });
+      }
+
       return this;
     }
 
