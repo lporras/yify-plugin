@@ -5,9 +5,6 @@ YifyPlugin.module('MovieList', function (MovieList, App, Backbone, Marionette, $
   // ---------------
   //
   MovieList.Router = Marionette.AppRouter.extend({
-    appRoutes: {
-      '*filter': 'filterItems'
-    }
   });
 
   // MovieList Controller (Mediator)
@@ -34,12 +31,6 @@ YifyPlugin.module('MovieList', function (MovieList, App, Backbone, Marionette, $
       App.main.show(movieListView);
       //movieList.pager({success: function(){ movieList.trigger("ajaxSuccess") } });
       this.movieList.pager();
-    },
-
-    // Set the filter to show complete or all items
-    filterItems: function (filter) {
-      filter = filter || "";
-      App.vent.trigger('MovieList:filter', filter.trim() || '');
     }
 
   });
