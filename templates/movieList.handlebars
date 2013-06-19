@@ -1,15 +1,15 @@
-<div id="movie-search" class="span10">
-  <form class="form-horizontal">
+<div id="movies-search" class="span10">
+  <form class="form-horizontal" id="search-form">
 
     <div class="control-group">
       <label class="checkbox inline" for="keywords">Movie Name:</label>
-      <input type="text" name="Keywords" id="keywords" value="" class="input-xxlarge" maxlength="300" tabindex="1" autocomplete="off" placeholder="Type Movie Name">
+      <input type="text" name="keywords" id="keywords" value="" class="input-xxlarge" maxlength="300" tabindex="1" autocomplete="off" placeholder="Type Movie Name">
       <button type="submit" class="btn btn-primary">Search</button>
     </div>
 
     <div class="control-group">
       <label class="checkbox inline">Quality:</label>
-      <select name="Quality" id="form_Quality" class="span1">
+      <select name="quality" id="form_Quality" class="span1">
         <option value="All" style="text-indent: 0px;" selected="selected">All</option>
         <option value="1080p" style="text-indent: 0px;">1080p</option>
         <option value="3D" style="text-indent: 0px;">3D</option>
@@ -20,7 +20,7 @@
       </select>
 
       <label class="checkbox inline">Genre:</label>
-      <select name="Genre" id="form_Genre" class="span1">
+      <select name="genre" id="form_Genre" class="span2">
         <option value="All" style="text-indent: 0px;" selected="selected">All</option>
         <option value="Action" style="text-indent: 0px;">Action</option>
         <option value="Adventure" style="text-indent: 0px;">Adventure</option>
@@ -48,7 +48,7 @@
       </select>
 
       <label class="checkbox inline">Rating:</label>
-      <select name="Rating" id="form_Rating" class="span1">
+      <select name="rating" id="form_Rating" class="span1">
         <option value="0" style="text-indent: 0px;" selected="selected">All</option>
         <option value="9.9" style="text-indent: 0px;">10</option>
         <option value="9" style="text-indent: 0px;">9+</option>
@@ -63,13 +63,14 @@
       </select>
 
       <label class="checkbox inline">Order By:</label>
-      <select style="margin-right:0;" name="orderBy" id="form_orderBy" class="span1">
-        <option value="latest" style="text-indent: 0px;" selected="selected">Latest</option>
-        <option value="oldest" style="text-indent: 0px;">Oldest</option>
+      <select style="margin-right:0;" name="sort" id="form_orderBy" class="span2">
+        <option value="lastest" style="text-indent: 0px;" selected="selected">Latest</option>
+        <option value="oldest" style="text-indent: 0px;" >Oldest</option>
+        <option value="downloaded" style="text-indent: 0px;">Downloaded</option>
         <option value="seeds" style="text-indent: 0px;">Seeds</option>
         <option value="peers" style="text-indent: 0px;">Peers</option>
         <option value="size" style="text-indent: 0px;">Size</option>
-        <option value="A-Z" style="text-indent: 0px;">A-Z</option>
+        <option value="alphabet" style="text-indent: 0px;">A-Z</option>
         <option value="rating" style="text-indent: 0px;">Rating</option>
       </select>
     </div>

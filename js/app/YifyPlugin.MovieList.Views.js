@@ -63,6 +63,76 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
 
   });
 
+  Views.SearchFormView = Backbone.View.extend({
+    events: {
+      'submit form'       : 'submitForm'
+    },
+
+    initialize: function(options){
+      _.bindAll(this, 'submitForm');
+      this.ui = {};
+      this.render();
+    },
+
+    reformat: function(array){
+      var obj = {};
+      for(var i=0; i<array.length; i++){
+        var a = array[i];
+        var name = a.name;
+        var value = a.value;
+        obj[name] = value;
+      }
+      return obj;
+    },
+
+    render: function(){
+      this.setValues();
+      return this;
+    },
+
+    setValues: function(){
+      this.ui.keywords = this.$el.find("input#keywords");
+      this.ui.quality = this.$el.find("select#form_Quality");
+      this.ui.rating = this.$el.find("select#form_Rating");
+      this.ui.orderBy = this.$el.find("select#form_orderBy");
+      this.ui.genre = this.$el.find("select#form_Genre");
+
+      this.ui.keywords.attr("value", this.collection.server_api.keywords);
+
+      var quality = this.collection.quality;
+      this.ui.quality.find("option").filter(function() {
+        //may want to use $.trim in here
+        return $(this).text() == quality;
+      }).prop('selected', true);
+
+      var rating = this.collection.rating;
+      this.ui.rating.find("option").filter(function() {
+        //may want to use $.trim in here
+        return $(this).text() == rating;
+      }).prop('selected', true);
+
+      var orderBy = this.collection.orderFiled;
+      this.ui.orderBy.find("option").filter(function() {
+        //may want to use $.trim in here
+        return $(this).text() == orderBy;
+      }).prop('selected', true);
+
+      var genre = this.collection.genre;
+      this.ui.genre.find("option").filter(function() {
+        //may want to use $.trim in here
+        return $(this).text() == genre;
+      }).prop('selected', true);
+    },
+
+    submitForm: function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      //console.log(this.reformat($(e.target).serializeArray()));
+      var formHash = this.reformat($(e.target).serializeArray());
+      this.collection.search(formHash);
+    }
+  });
+
   // List View
   // --------------
   //
@@ -78,6 +148,7 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
     },
 
     ui: {
+      moviesSearch: "#movies-search",
       moviesCount: "#movies-count .count",
       movieList: "#movie-list",
       pagination: ".movies-pagination"
@@ -115,6 +186,7 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
     },
 
     onRender: function(){
+      this.searchFormView = new Views.SearchFormView({collection: this.collection, el: this.ui.moviesSearch});
       this.updateCount();
       this.ui.pagination.html(new Views.PaginationView({collection: this.collection}).render().el)
     },
