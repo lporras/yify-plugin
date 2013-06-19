@@ -108,13 +108,14 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
       var rating = this.collection.rating;
       this.ui.rating.find("option").filter(function() {
         //may want to use $.trim in here
-        return $(this).text() == rating;
+        return $(this).val() == rating;
       }).prop('selected', true);
 
-      var orderBy = this.collection.orderFiled;
+      var orderBy = this.collection.orderBy();
+
       this.ui.orderBy.find("option").filter(function() {
         //may want to use $.trim in here
-        return $(this).text() == orderBy;
+        return $(this).val() == orderBy;
       }).prop('selected', true);
 
       var genre = this.collection.genre;

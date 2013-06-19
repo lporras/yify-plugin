@@ -71,9 +71,9 @@ YifyPlugin.module('Movies', function(Movies, App, Backbone, Marionette, $, _) {
       },
 
       'order': function(){
-        if(this.orderFiled === undefined)
+        if(this.orderField === undefined)
           return 'desc'
-        return this.orderFiled;
+        return this.orderField;
       },
 
       'quality': function(){
@@ -98,12 +98,26 @@ YifyPlugin.module('Movies', function(Movies, App, Backbone, Marionette, $, _) {
 
     },
 
+    orderBy: function(){
+      if(this.sortField == "date" && this.orderField == "desc"){
+        return "lastest";
+      }else if(this.sortField == "date" && this.orderField == "asc"){
+        return "oldest";
+      }else{
+        return this.sortField;
+      }
+    },
+
     search: function(options){
-      this.orderFiled = "desc";
+      this.orderField = "desc";
       this.sortField  = "date";
 
       if(options.sort == "oldest"){
-        this.orderFiled = "asc";
+        this.orderField = "asc";
+      }
+      else if(options.sort == "alphabet"){
+        this.orderField = "asc";
+        this.sortField  = "alphabet";
       }
       else{
         this.sortField = options.sort;
