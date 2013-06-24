@@ -15,6 +15,5 @@
 
   "browser_action": {
     "default_icon": "yify.ico"
-    //"default_popup": "popup.html"
   }
 }
