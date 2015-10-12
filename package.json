@@ -1,0 +1,22 @@
+{
+  "name": "yify-plugin",
+  "version": "1.0.0",
+  "description": "yify-plugin ===========",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lporras/yify-plugin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lporras/yify-plugin/issues"
+  },
+  "homepage": "https://github.com/lporras/yify-plugin#readme",
+  "dependencies": {
+    "handlebars": "1.0.6"
+  }
+}
