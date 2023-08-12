@@ -22,18 +22,17 @@ YifyPlugin.module('MovieStreaming', function (MovieStreaming, App, Backbone, Mar
 
     streamMovie: function (movieId){
       this.movie.set("MovieID", movieId);
-      this.movie.url = "http://yify-torrents.com/api/movie.json?id=" + this.movie.id
+      this.movie.url = "https://yts.mx/api/v2/movie_details.json?movie_id=" + movieId
       this.movie.fetch({success: this.showMovie});
     },
 
     showMovie: function (model, response, options){
+      model.set(response.data.movie);
       var movieAppLayout = new App.Btapp.Views.MovieAppLayout({
         model: model
       });
       App.main.show(movieAppLayout);
       movieAppLayout.content.show(new App.Btapp.Views.ContentView({model: model}))
-      //var contentLayout = new App.Btapp.Views.ContentLayout({model: model});
-      //movieAppLayout.content.show(contentLayout);
     }
 
   });

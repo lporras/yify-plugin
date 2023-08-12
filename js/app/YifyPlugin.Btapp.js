@@ -2,8 +2,8 @@ YifyPlugin.module('Btapp', function(Btapp, App, Backbone, Marionette, $, _) {
 
   Btapp.Model = Backbone.Model.extend({
     initialize: function(options){
-      if(options.torrentUrl){
-        var hash = options.torrentUrl;
+      if(options.torrentUrl && options.hash){
+        var hash = options.hash;
         var link = this.isInfoHash(hash) ? this.getMagnetLink(hash) : hash;
         this.set({link: link, hash: hash, product: 'Torque'});
       }
@@ -11,17 +11,12 @@ YifyPlugin.module('Btapp', function(Btapp, App, Backbone, Marionette, $, _) {
 
     TRACKERS: [
       'udp://tracker.openbittorrent.com:80/announce',
-      'udp://tracker.publicbt.com:80/announce',
-      'http://bt.rghost.net/announce',
-      'http://exodus.desync.com/announce',
-      'http://tracker.ccc.de/announce',
-      'http://tracker.publichd.eu/announce',
-      'http://tracker.torrentbay.to:6969/announce',
-      'http://tracker.yify-torrents.com/announce',
-      'udp://ipv4.tracker.harry.lu:80/announce',
-      'udp://tracker.ccc.de/announce',
-      'udp://tracker.ccc.de:80/announce',
-      'udp://tracker.djhsearch.co.cc:80/announce',
+      'udp://tracker.coppersurfer.tk:6969',
+      'udp://glotorrents.pw:6969/announce',
+      'udp://tracker.opentrackr.org:1337/announce',
+      'udp://torrent.gresille.org:80/announce',
+      'udp://p4p.arenabg.com:1337',
+      'udp://tracker.leechers-paradise.org:6969'
     ],
 
     isInfoHash: function (hash) {

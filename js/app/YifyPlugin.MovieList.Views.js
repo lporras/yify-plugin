@@ -12,30 +12,20 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
     tagName: 'div',
     className: 'span5',
     events: {
-      "click a.streamTorrent": "streamTorrent",
-      "click a.downloadTorrent": "downloadTorrent"
+      "click a.streamTorrent": "streamTorrent"
     },
     initialize: function(){
       _.bindAll(this, 'streamTorrent')
     },
 
     template: function (serialized_model){
+      console.log(serialized_model)
       return Handlebars.templates.movieItem(serialized_model)
-    },
-
-    downloadTorrent: function(event){
-      /*event.stopPropagation();
-      event.preventDefault();
-      debugger;
-      chrome.tabs.create({url: this.model.get("TorrentUrl")})
-      return false;
-      */
-      console.log("download Torrent: "+ this.model.get("TorrentUrl"));
     },
 
     streamTorrent: function(event){
       var thisView = this;
-      chrome.tabs.create({url: 'chrome-extension://' + chrome.i18n.getMessage("@@extension_id") + '/movie.html#' + this.model.id});
+      chrome.tabs.create({url: 'chrome-extension://' + chrome.i18n.getMessage("@@extension_id") + '/movie.html#' + this.model.get('id')});
       return false;
     }
   });

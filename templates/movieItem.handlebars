@@ -1,23 +1,21 @@
 <div class="media">
-  <a href="{{MovieUrl}}" target="_blank" class="pull-left">
-    <img src="{{CoverImage}}" alt="" class="media-object"/>
+  <a href="{{url}}" target="_blank" class="pull-left">
+    <img src="{{small_cover_image}}" alt="" class="media-object"/>
   </a>
   <div class="media-body">
     <span class="info">
-      <h4 class="media-heading"><a href="{{MovieUrl}}" target="_blank">{{MovieTitle}}</a></h4>
-      <p><b>Size:</b> {{Size}}</p>
-      <p><b>Quality:</b> {{Quality}}</p>
-      <p><b>Genre:</b> {{Genre}}</p>
-      <p><b>IMDB Rating:</b> {{MovieRating}}/10</p>
+      <h4 class="media-heading"><a href="{{url}}" target="_blank">{{title}}</a></h4>
+      <p><b>Genre:</b> {{genres.[0]}}</p>
+      <p><b>IMDB Rating:</b> {{rating}}/10</p>
       <span>
-        <p class="peers"><b>Peers:</b> {{TorrentPeers}}</p>
-        <p class="peers"><b>Seeds:</b> {{TorrentSeeds}}</p>
+        <p class="peers"><b>Peers:</b> {{torrents.[0].peers}}</p>
+        <p class="peers"><b>Seeds:</b> {{torrents.[0].seeds}}</p>
       </span>
     </span>
   </div>
   <span class="links">
-    <a href="{{ MovieUrl }}" class="btn" target="_blank">View Info</a>
-    <a href="{{ TorrentUrl }}" target="_blank" class="btn" data-movieid="{{MovieID}}">
+    <a href="{{ url }}" class="btn" target="_blank">View Info</a>
+    <a href="{{ torrents.[0].url }}" target="_blank" class="btn" data-movieid="{{id}}">
       Download
     </a>
     <a href="javascript:;" class="btn btn-primary streamTorrent">

@@ -17,15 +17,18 @@ YifyPlugin.module('Btapp.Views', function (Views, App, Backbone, Marionette, $) 
     },
 
     template: function(serialized_model){
-      serialized_model["LongDescription"] = serialized_model["LongDescription"].replace(/\\r\\n/g, "<br />")
-      return Handlebars.templates.movie(serialized_model)
+      //serialized_model["LongDescription"] = serialized_model["LongDescription"].replace(/\\r\\n/g, "<br />")
+      return Handlebars.templates.movie(serialized_model.data.movie)
     },
 
     initialize: function(){
       _.bindAll(this, 'btappConnect', 'torrent', 'file')
-      this.btappModel = new App.Btapp.Model({torrentUrl: this.model.get("TorrentUrl")});
+      this.btappModel = new App.Btapp.Model({
+        torrentUrl: this.model.get("torrents")[0].url,
+        hash: this.model.get("torrents")[0].hash
+      });
       this.btapp = new Btapp;
-      var hash = this.model.get('hash')
+      var hash = this.model.get("torrents")[0].hash
       var torrent_match = this.btappModel.isInfoHash(hash) ? hash.toUpperCase() : '*';
       this.queries = [
           ['btapp','showview'],
@@ -35,7 +38,8 @@ YifyPlugin.module('Btapp.Views', function (Views, App, Backbone, Marionette, $) 
           ['btapp','torrent','all',torrent_match,'file','all','*','properties','all','name'],
           ['btapp','torrent','all',torrent_match,'properties','all'],
           ['btapp','torrent','all',torrent_match,'remove'],
-          ['btapp','torrent','all',torrent_match,'open_containing']
+          ['btapp','torrent','all',torrent_match,'open_containing'],
+          ['btapp', 'add']
       ];
       this.btappConnect();
       this.btapp.live('torrent ' + torrent_match + ' properties', this.torrent, this);
@@ -43,16 +47,20 @@ YifyPlugin.module('Btapp.Views', function (Views, App, Backbone, Marionette, $) 
     },
 
     btappConnect: function(){
+      // this.btapp.connect({
+      //     product: this.btappModel.get('product'),
+      //     plugin: this.btappModel.get('plugin'),
+      //     pairing_type: this.btappModel.get('pairing_type'),
+      //     queries: this.queries
+      // });
       this.btapp.connect({
-          product: this.btappModel.get('product'),
-          plugin: this.btappModel.get('plugin'),
-          pairing_type: this.btappModel.get('pairing_type'),
-          queries: this.queries
+        product: 'Torque',
+        queries: this.queries
       });
     },
 
     torrent: function(properties, torrent) {
-        if(!properties || typeof properties !== 'object' || typeof properties.has === 'undefined') {
+      if(!properties || typeof properties !== 'object' || typeof properties.has === 'undefined') {
             return;
         }
         var hash = this.btappModel.get('hash');
@@ -95,7 +103,10 @@ YifyPlugin.module('Btapp.Views', function (Views, App, Backbone, Marionette, $) 
 
     initialize: function(options){
       _.bindAll(this, 'btappConnect', 'addCallback')
-      this.btappModel = new App.Btapp.Model({torrentUrl: this.model.get("TorrentUrl")});
+      this.btappModel = new App.Btapp.Model({
+        torrentUrl: this.model.get("torrents")[0].url,
+        hash: this.model.get("torrents")[0].hash
+      });
       this.btapp = new Btapp;
       this.btappConnect();
       this.btapp.on('add:add', this.addCallback);

@@ -11,9 +11,9 @@ YifyPlugin.module('Movies', function(Movies, App, Backbone, Marionette, $, _) {
   Movies.Movie = Backbone.Model.extend({
     //localStorage: new Backbone.LocalStorage(localStorageKey),
 
-    urlRoot: "http://yify-torrents.com/api/movie",
+    urlRoot: "https://yts.mx/api/v2/movie_details.json",
 
-    idAttribute: "MovieID",
+    idAttribute: "movie_id",
 
     initialize: function() {
     }
@@ -24,7 +24,6 @@ YifyPlugin.module('Movies', function(Movies, App, Backbone, Marionette, $, _) {
 
   Movies.MovieList = Backbone.Paginator.requestPager.extend({
     model: Movies.Movie,
-    //url: "http://yify-torrents.com/api/list?limit=24",
 
     paginator_core: {
       // the type of the request (GET by default)
@@ -33,7 +32,7 @@ YifyPlugin.module('Movies', function(Movies, App, Backbone, Marionette, $, _) {
       dataType: 'json',
 
       // the URL (or base URL) for the service
-      url: 'http://yify-torrents.com/api/list?'
+      url: 'https://yts.mx/api/v2/list_movies.json?'
     },
 
     paginator_ui: {
@@ -64,13 +63,13 @@ YifyPlugin.module('Movies', function(Movies, App, Backbone, Marionette, $, _) {
       'set': function() { return this.currentPage },
 
       // field to sort by
-      'sort': function() {
+      'sort_by': function() {
         if(this.sortField === undefined)
-          return 'date';
+          return 'date_added';
         return this.sortField;
       },
 
-      'order': function(){
+      'order_by': function(){
         if(this.orderField === undefined)
           return 'desc'
         return this.orderField;
@@ -78,21 +77,21 @@ YifyPlugin.module('Movies', function(Movies, App, Backbone, Marionette, $, _) {
 
       'quality': function(){
         if(this.quality === undefined)
-          return 'ALL'
+          return 'All'
         return this.quality;
       },
 
       'genre': function(){
         if(this.genre === undefined)
-          return 'ALL'
+          return ''
         return this.genre;
       },
 
-      'rating': function(){
-        if(this.rating === undefined)
-          return 0
-        return this.rating;
-      },
+      // 'rating': function(){
+      //   if(this.rating === undefined)
+      //     return 0
+      //   return this.rating;
+      // },
 
       'format': 'json',
 
@@ -139,9 +138,9 @@ YifyPlugin.module('Movies', function(Movies, App, Backbone, Marionette, $, _) {
     },
 
     parse: function(response){
-      this.totalRecords = parseInt(response.MovieCount);
+      this.totalRecords = parseInt(response.data.movie_count);
       this.totalPages = Math.floor(this.totalRecords / this.perPage);
-      return response.MovieList;
+      return response.data.movies;
     }
   });
 

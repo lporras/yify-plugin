@@ -1,15 +1,20 @@
-<h2 id="movie-title"><a href="{{MovieUrl}}" target="_blank">{{MovieTitle}}</a></h2>
-
-<img src="{{MediumScreenshot1}}" alt="Screenshot1" />
-<img src="{{MediumScreenshot2}}" alt="Screenshot2" />
-<img src="{{MediumScreenshot3}}" alt="Screenshot3" />
+<h2 id="movie-title"><a href="{{url}}" target="_blank">{{title}}</a></h2>
 
 <div class="long-desc">
-  {{ShortDescription}}
+  {{description_intro}}
   <br/>
   <br/>
-  {{LongDescription}}
+  {{description_full}}
 </div>
 
 <div id="video-container">
+</div>
+
+<div class="hero-unit">
+{{#each torrents}}
+Quality: {{this.quality}}
+<br />
+peerflix "magnet:?xt=urn:btih:{{this.hash}}" --vlc
+<br />
+{{/each}}
 </div>

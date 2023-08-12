@@ -7,7 +7,7 @@
 
   "permissions": [
     "tabs",
-    "http://yify-torrents.com/api/*",
+    "https://yts.mx/api/*",
     "http://127.0.0.1:43611/*"
   ],
 
