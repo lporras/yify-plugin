@@ -7,9 +7,14 @@
 
   "permissions": [
     "tabs",
+    "webRequest",
+    "webRequestBlocking",
     "https://yts.mx/api/*",
-    "http://127.0.0.1:43611/*"
+    "http://127.0.0.1:43611/*",
+    "https://cdn.jsdelivr.net/*"
   ],
+
+  "content_security_policy": "script-src 'self' http://127.0.0.1 https://cdn.jsdelivr.net; object-src 'self'; script-src-elem 'self' http://127.0.0.1 https://cdn.jsdelivr.net;",
 
   "background": { "page": "app.html" },
 

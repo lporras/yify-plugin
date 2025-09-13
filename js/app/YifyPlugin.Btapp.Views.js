@@ -16,13 +16,17 @@ YifyPlugin.module('Btapp.Views', function (Views, App, Backbone, Marionette, $) 
       videoContainer: "#video-container"
     },
 
+    events: {
+      'click button'       : 'startWebTorrentClient'
+    },
+
     template: function(serialized_model){
       //serialized_model["LongDescription"] = serialized_model["LongDescription"].replace(/\\r\\n/g, "<br />")
       return Handlebars.templates.movie(serialized_model.data.movie)
     },
 
     initialize: function(){
-      _.bindAll(this, 'btappConnect', 'torrent', 'file')
+      _.bindAll(this, 'btappConnect', 'torrent', 'file', 'startWebTorrentClient')
       this.btappModel = new App.Btapp.Model({
         torrentUrl: this.model.get("torrents")[0].url,
         hash: this.model.get("torrents")[0].hash
@@ -47,15 +51,11 @@ YifyPlugin.module('Btapp.Views', function (Views, App, Backbone, Marionette, $) 
     },
 
     btappConnect: function(){
-      // this.btapp.connect({
-      //     product: this.btappModel.get('product'),
-      //     plugin: this.btappModel.get('plugin'),
-      //     pairing_type: this.btappModel.get('pairing_type'),
-      //     queries: this.queries
-      // });
       this.btapp.connect({
-        product: 'Torque',
-        queries: this.queries
+          product: this.btappModel.get('product'),
+          plugin: this.btappModel.get('plugin'),
+          pairing_type: this.btappModel.get('pairing_type'),
+          queries: this.queries
       });
     },
 
@@ -85,8 +85,28 @@ YifyPlugin.module('Btapp.Views', function (Views, App, Backbone, Marionette, $) 
                 this.videoViews[fileName].appendSubs(properties.get('streaming_url'), 'en');
             }
         }
-    }
+    },
 
+    startWebTorrentClient: function() {
+      this.client = new WebTorrent();
+      const trackerURL = 'udp://tracker.openbittorrent.com:80';
+      const torrentId = "magnet:?xt=urn:btih:" + this.model.get("torrents")[0].hash + "&tr=" + encodeURIComponent(trackerURL);
+
+      this.client.on('error', function (err) {
+        console.error('ERROR: ' + err.message)
+      });
+
+      this.client.add(torrentId, function (torrent) {
+        // Torrents can contain many files. Let's use the .mp4 file
+        const file = torrent.files.find(function (file) {
+          return file.name.endsWith('.mp4')
+        })
+
+        // Display the file by adding it to the DOM.
+        // Supports video, audio, image files, and more!
+        file.appendTo('body');
+      });
+    }
   });
 
   Views.MovieAppLayout = Marionette.Layout.extend({
@@ -102,11 +122,13 @@ YifyPlugin.module('Btapp.Views', function (Views, App, Backbone, Marionette, $) 
     },
 
     initialize: function(options){
-      _.bindAll(this, 'btappConnect', 'addCallback')
+      _.bindAll(this, 'btappConnect', 'addCallback');
+
       this.btappModel = new App.Btapp.Model({
         torrentUrl: this.model.get("torrents")[0].url,
         hash: this.model.get("torrents")[0].hash
       });
+
       this.btapp = new Btapp;
       this.btappConnect();
       this.btapp.on('add:add', this.addCallback);

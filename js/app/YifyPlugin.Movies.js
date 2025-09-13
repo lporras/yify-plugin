@@ -50,7 +50,7 @@ YifyPlugin.module('Movies', function(Movies, App, Backbone, Marionette, $, _) {
       // service you are using does not support providing the total
       // number of pages for us.
       // 10 as a default in case your service doesn't return the total
-      totalPages: 1,
+      totalPages: 90,
 
       totalRecords: 0
     },
@@ -60,12 +60,12 @@ YifyPlugin.module('Movies', function(Movies, App, Backbone, Marionette, $, _) {
       'limit': function() { return this.perPage },
 
       // number of page
-      'set': function() { return this.currentPage },
+      'page': function() { return this.currentPage },
 
       // field to sort by
-      'sort_by': function() {
+      'sort': function() {
         if(this.sortField === undefined)
-          return 'date_added';
+          return 'seeds';
         return this.sortField;
       },
 
@@ -128,7 +128,7 @@ YifyPlugin.module('Movies', function(Movies, App, Backbone, Marionette, $, _) {
 
       if(options.hasOwnProperty("keywords")){
         if(options.keywords.length >= 1){
-          this.server_api.keywords = options.keywords;
+          this.server_api.query_term = options.keywords;
         }else{
           delete this.server_api.keywords;
         }

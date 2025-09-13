@@ -167,13 +167,13 @@ YifyPlugin.module('MovieList.Views', function (Views, App, Backbone, Marionette,
     },
 
     ajaxSend: function(event, jqXHR, ajaxOptions){
-      if(/api\/list/.test(ajaxOptions.url)){
+      if(/list_movies/.test(ajaxOptions.url)){
         this.collection.trigger("ajaxSend")
       }
     },
 
     ajaxSuccess: function(event, XMLHttpRequest, ajaxOptions){
-      if(/api\/list/.test(ajaxOptions.url)){
+      if(/list_movies/.test(ajaxOptions.url)){
         this.collection.trigger("ajaxSuccess");
       }
     },
